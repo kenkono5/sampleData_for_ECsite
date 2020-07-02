@@ -3,7 +3,7 @@ from faker import Faker
 import datetime
 import random
 
-def datagenerate(records, headers):
+def customerDataGenerate(records, headers):
     fake = Faker('ja_JP')
     gender = ["男", "女"]
     age = [20, 30, 40]
@@ -25,5 +25,5 @@ def datagenerate(records, headers):
 if __name__ == '__main__':
     records = 10
     headers = ["Name", "Buy", "Gender", "Age", "Prefecture", "City", "Rank",]
-    datagenerate(records, headers)
+    customerDataGenerate(records, headers)
     print("CSV generation complete!")
