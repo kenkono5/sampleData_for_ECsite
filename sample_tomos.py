@@ -15,6 +15,7 @@ def datagenerate(records, headers):
             writer.writerow({
                     "Name": fake.name(),
                     "Gender": random.choice(gender),
+                    "Buy": random.randint(100, 5000),
                     "Age": random.choice(age),
                     "Prefecture" : fake.prefecture(),
                     "City" : fake.city(),
@@ -23,6 +24,6 @@ def datagenerate(records, headers):
     
 if __name__ == '__main__':
     records = 10
-    headers = ["Name", "Gender", "Age", "Prefecture", "City", "Rank",]
+    headers = ["Name", "Buy", "Gender", "Age", "Prefecture", "City", "Rank",]
     datagenerate(records, headers)
     print("CSV generation complete!")
