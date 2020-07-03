@@ -1,5 +1,5 @@
-import csv
 from faker import Faker
+import csv
 import datetime
 import random
 
@@ -14,10 +14,10 @@ def customerDataGenerate(records, customerHeaders):
   age = [20, 30, 40]
   prefecture = ["東京", "埼玉", "神奈川", "千葉"]
   rank = ["S", "A", "B", "C"]
-  with open("customer_data.csv", 'wt', encoding='utf8') as csvFile:
+  with open("customer_data.csv", 'wt', encoding='utf_8_sig') as csvFile:
     writer = csv.DictWriter(csvFile, fieldnames=customerHeaders)
     writer.writeheader()
-    for i in range(records):
+    for _ in range(records):
       writer.writerow({
         "Name": fake.name(),
         "Gender": random.choice(gender),
@@ -32,7 +32,7 @@ def storeDataGenerate(records, storeHeaders):
   stores = ["オンラインストア", "トモズ 秋葉原店", "トモズ 大手町 カンファレンスセンター店", "トモズ 大手町プレイス店", "トモズ KITTE店", "トモズ 東京ミッドタウン日比谷店", "トモズ 神田和泉町店"]
   w = [2, 1, 1, 1, 1, 1, 1]
   stores_weight = random.choices(stores, k = records, weights = w)
-  with open("store_data.csv", 'wt', encoding='utf8') as csvFile:
+  with open("store_data.csv", 'wt', encoding='utf_8_sig') as csvFile:
     writer = csv.DictWriter(csvFile, fieldnames=storeHeaders)
     writer.writeheader()
     for i in range(records):
@@ -44,7 +44,7 @@ def storeDataGenerate(records, storeHeaders):
 
 if __name__ == '__main__':
   customer_records = 100000
-  customerHeaders = ["Name", "Buy", "Gender", "Age", "Prefecture", "City", "Rank"]
+  customerHeaders = ["Name", "Buy", "Gender", "Age", "Prefecture", "Rank"]
   customerDataGenerate(customer_records, customerHeaders)
 
   store_records = 1000
