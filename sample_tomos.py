@@ -22,12 +22,15 @@ month_array = [x.strftime("%Y-%m-%d") for x in lst]
 def customerDataGenerate(records, customerHeaders):
   fake = Faker('ja_JP')
   gender = ["男", "女"]
-  age = [20, 30, 40]
+  age = [20, 30, 40, 50, "60以上"]
+  w_age_number = [1, 3, 1, 2, 1]
+  w_age = random.choices(age, k = records - 1, weights = w_age_number)
   prefecture = ["東京都", "埼玉県", "神奈川県", "千葉県"]
+  w_prefecture_number = [3, 2, 1, 1]
+  w_prefecture = random.choices(prefecture, k = records - 1, weights = w_prefecture_number)
   rank = ["S", "A", "B", "C"]
-
-  w = [1, 1, 2, 3]
-  w_rank = random.choices(rank, k = records - 1, weights = w)
+  w_rank_number = [1, 1, 2, 3]
+  w_rank = random.choices(rank, k = records - 1, weights = w_rank_number)
   id = 1
 
   with open("customer_data.csv", 'wt', encoding='utf_8_sig') as csvFile:
@@ -39,8 +42,8 @@ def customerDataGenerate(records, customerHeaders):
         "Name": fake.name(),
         "Gender": random.choice(gender),
         "Buy": random.randint(100, 5000),
-        "Age": random.choice(age),
-        "Prefecture" : random.choice(prefecture),
+        "Age": w_age[id - 2],
+        "Prefecture" : w_prefecture[id - 2],
         "Rank": w_rank[id - 2],
         })
       id+=1
